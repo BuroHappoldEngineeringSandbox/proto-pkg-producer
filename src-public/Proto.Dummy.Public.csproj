@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Proto.Dummy.Public</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>BuroHappoldEngineeringSandbox</Authors>
+    <Description>Prototype public package for a transport test. Disposable.</Description>
+    <RepositoryUrl>https://github.com/BuroHappoldEngineeringSandbox/proto-pkg-producer</RepositoryUrl>
+  </PropertyGroup>
+</Project>
