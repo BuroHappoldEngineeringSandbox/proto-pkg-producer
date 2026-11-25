@@ -1,5 +1,13 @@
 name: publish
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: project to pack and push
+        required: true
+        default: src/Proto.Dummy.csproj
+        type: choice
+        options: [src/Proto.Dummy.csproj, src-public/Proto.Dummy.Public.csproj]
 permissions:
   contents: read
   packages: write
@@ -11,7 +19,9 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: dotnet pack src/Proto.Dummy.csproj -c Release -o out
+      - run: dotnet pack "$PROJECT" -c Release -o out
+        env:
+          PROJECT: ${{ inputs.project }}
       - run: dotnet nuget push "out/*.nupkg" --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key "$TOKEN"
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
